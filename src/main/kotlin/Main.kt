@@ -1,4 +1,8 @@
-import javax.swing.JFrame
+import java.awt.EventQueue
+import java.awt.GridBagConstraints.BASELINE
+import java.awt.event.ItemEvent
+import java.awt.event.ItemListener
+import javax.swing.*
 
 fun main(args: Array<String>) {
     println("Hello World!")
@@ -15,4 +19,30 @@ fun main(args: Array<String>) {
     // mainFrame.setSize(600, 400);
     mainFrame.pack()
     mainFrame.isVisible = true
+
 }
+
+class FormTask1 : FormTask1Graph()
+{
+    lateinit var panelTask1Graph: JPanel
+    lateinit var buttonReadUserEdgeGraph: JButton
+    lateinit var radioButtonDirected:JRadioButton
+    lateinit var textAreaUserEdgeGraph: JTextArea
+    lateinit var labelTest: JLabel
+    override fun getPanelRadioButton(): JPanel {
+        if(radioButtonDirected.isSelected) {
+            textAreaUserEdgeGraph.text ="Hey"
+        } else {
+            labelTest.text = "Not hey"
+        }
+        //buttonReadUserEdgeGraph.cli
+
+        return super.getPanelRadioButton()
+
+    }
+
+}
+
+
+
+
