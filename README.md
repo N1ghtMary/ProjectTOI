@@ -1,2 +1,2 @@
 # ProjectTOI
-Kotlin app for TOI
+Java app for TOI
