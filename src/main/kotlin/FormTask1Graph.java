@@ -7,10 +7,10 @@ public class FormTask1Graph extends JFrame{
     private JPanel panelTask1Graph;
     private JPanel panelRadioButtonDirectionGraph;
     private JPanel panelUserEdgeGraph;
-    private JRadioButton radioButtonDirected;
+    private JRadioButton radioButtonDirectedGraph;
     private JRadioButton radioButtonUndirectedGraph;
     private JTextArea textAreaUserEdgeGraph;
-    private JButton buttonReadUserEdgeGraph;
+    private JButton buttonCalculateGraphActs;
     private JLabel labelTest;
     private JComboBox comboBoxStartGraph;
     private JComboBox comboBoxEndGraph;
@@ -49,32 +49,47 @@ public class FormTask1Graph extends JFrame{
 
         DefaultTableModel modelUserEdgesGraph;
         modelUserEdgesGraph = new DefaultTableModel();
-        Object[] column = {"Beginning","Ending"};
-        final Object[] row = new Object[4];
-        modelUserEdgesGraph.setColumnIdentifiers(column);
+        Object[] columnUserEdgesGraph = {"Beginning","Ending"};
+        final Object[] rowUserEdgesGraph = new Object[0];
+        modelUserEdgesGraph.setColumnIdentifiers(columnUserEdgesGraph);
         tableUserEdgesGraph.setModel(modelUserEdgesGraph);
         //paneScrollForUserTable.setViewportView(tableUserEdgesGraph);
 
-         buttonReadUserEdgeGraph.addActionListener(new ActionListener() {
+        DefaultTableModel modelAdjacencyList;
+        modelAdjacencyList = new DefaultTableModel();
+        Object[] column = {"e1","e2","e3","e4","e5"};
+
+        DefaultTableModel modelAdjacencyMatrix;
+        modelAdjacencyMatrix = new DefaultTableModel();
+        Object[] columnAdjacencyMatrix = {"v1","v2","v3","v4","v5"};
+        final Object[] rowAdjacencyMatrix = new Object[0];
+        modelAdjacencyMatrix.setColumnIdentifiers(columnAdjacencyMatrix);
+        tableAdjacencyMatrix.setModel(modelAdjacencyMatrix);
+
+        DefaultTableModel modelIncidenceMatrix;
+        modelIncidenceMatrix = new DefaultTableModel();
+        Object[] columnIncidenceMatrix = {"e1","e2","e3","e4","e5","e6","e7","e8","e9","e10"};
+        final Object[] rowIncidenceMatrix = new Object[0];
+        modelIncidenceMatrix.setColumnIdentifiers(columnIncidenceMatrix);
+        tableIncidenceMatrix.setModel(modelIncidenceMatrix);
+
+        int[][] edgesGraphArray = new int[10][2];
+
+         buttonCalculateGraphActs.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String userText = textAreaUserEdgeGraph.getText();
-                int[][] userEdgeGraph = new int[0][0];
-                for(int i = 0; i<userText.length(); i++)
-                {
-                    for(int j = 0; j<2 ; j++)
-                    {
-                      //  userEdgeGraph[i][j]= Arrays.stream(userText.split("\\n")).toArray();
-                    }
-                }
-                if(radioButtonDirected.isSelected()) {
-                    textAreaUserEdgeGraph.setText("Hey");
-                } else {
-                    labelTest.setText("Not Hey");
+                classCalculateGraphs adjacencyMatrix = new classCalculateGraphs();
+                if(radioButtonUndirectedGraph.isSelected() && !radioButtonDirectedGraph.isSelected()) {
+                    int typeGraphUndirected = 1;
+                    //adjacencyMatrix.funCalculateAdjacencyMatrix(edgesGraphArray,typeGraphUndirected);
+                    adjacencyMatrix.funFillModel(adjacencyMatrix.funCalculateAdjacencyMatrix(edgesGraphArray,typeGraphUndirected), modelAdjacencyMatrix);
+                } else if(radioButtonDirectedGraph.isSelected() && !radioButtonUndirectedGraph.isSelected()){
+                    int typeGraphDirected = 2;
+                    adjacencyMatrix.funFillModel(adjacencyMatrix.funCalculateAdjacencyMatrix(edgesGraphArray,typeGraphDirected),modelAdjacencyMatrix);
                 }
             }
         });
-        int[][] edgesGraphArray = new int[10][2];
+
         //tableUserEdgesCheck.setAutoCreateColumnsFromModel(true);
         //tableUserEdgesCheck.getAutoResizeMode();
         //tableUserEdgesCheck.addColumn(2);
