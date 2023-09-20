@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FormTask1Graph extends JFrame{
+    final int EDGESAMOUNT = 10;
     private JPanel panelTask1Graph;
     private JPanel panelRadioButtonDirectionGraph;
     private JPanel panelUserEdgeGraph;
@@ -73,19 +74,29 @@ public class FormTask1Graph extends JFrame{
         modelIncidenceMatrix.setColumnIdentifiers(columnIncidenceMatrix);
         tableIncidenceMatrix.setModel(modelIncidenceMatrix);
 
-        int[][] edgesGraphArray = new int[10][2];
+        int[][] edgesGraphArray = new int[EDGESAMOUNT][2];
 
          buttonCalculateGraphActs.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                classCalculateGraphs adjacencyMatrix = new classCalculateGraphs();
+                classCalculateGraphs calculateGraphs = new classCalculateGraphs();
                 if(radioButtonUndirectedGraph.isSelected() && !radioButtonDirectedGraph.isSelected()) {
                     int typeGraphUndirected = 1;
+                    int typeMatrixOutput = 0;
                     //adjacencyMatrix.funCalculateAdjacencyMatrix(edgesGraphArray,typeGraphUndirected);
-                    adjacencyMatrix.funFillModel(adjacencyMatrix.funCalculateAdjacencyMatrix(edgesGraphArray,typeGraphUndirected), modelAdjacencyMatrix);
+                    calculateGraphs.funFillModel(calculateGraphs.funCalculateAdjacencyMatrix(edgesGraphArray,typeGraphUndirected),
+                            modelAdjacencyMatrix,typeMatrixOutput);
+                    typeMatrixOutput++;
+                    calculateGraphs.funFillModel(calculateGraphs.funCalculateIncidenceMatrix(edgesGraphArray,typeGraphUndirected,EDGESAMOUNT),
+                            modelIncidenceMatrix,typeMatrixOutput);
                 } else if(radioButtonDirectedGraph.isSelected() && !radioButtonUndirectedGraph.isSelected()){
                     int typeGraphDirected = 2;
-                    adjacencyMatrix.funFillModel(adjacencyMatrix.funCalculateAdjacencyMatrix(edgesGraphArray,typeGraphDirected),modelAdjacencyMatrix);
+                    int typeMatrixOutput = 0;
+                    calculateGraphs.funFillModel(calculateGraphs.funCalculateAdjacencyMatrix(edgesGraphArray,typeGraphDirected),
+                            modelAdjacencyMatrix,typeMatrixOutput);
+                    typeMatrixOutput++;
+                    calculateGraphs.funFillModel(calculateGraphs.funCalculateIncidenceMatrix(edgesGraphArray,typeGraphDirected,EDGESAMOUNT),
+                            modelIncidenceMatrix,typeMatrixOutput);
                 }
             }
         });
@@ -102,7 +113,7 @@ public class FormTask1Graph extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //do{
-                if(countEdges<10)
+                if(countEdges<EDGESAMOUNT)
                 {edgesGraphArray[countEdges][0] = (int) comboBoxStartGraph.getSelectedItem();
                 edgesGraphArray[countEdges][1] = (int) comboBoxEndGraph.getSelectedItem();
                 //tableUserEdgesCheck.setValueAt(edgesGraphArray[countEdges][0],countEdges,1);
