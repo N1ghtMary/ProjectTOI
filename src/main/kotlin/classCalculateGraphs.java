@@ -53,11 +53,11 @@ public class classCalculateGraphs {
         {
             for(int edge = 0; edge < userGraphArray.length; edge++ )
             {
-                //NEED FIX 1 TO 1 GET -1
                 int i = userGraphArray[edge][0];
                 int j = userGraphArray[edge][1];
                 if(i>0 && j>0) {
                     incidenceMatrix[i-1][edge] = 1;
+                    if(i!=j)
                     incidenceMatrix[j-1][edge] = -1;
                 }
             }
