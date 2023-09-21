@@ -141,11 +141,9 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="53a1a" class="javax.swing.JTable" binding="tableAdjacencyList">
+              <component id="14d57" class="javax.swing.JList" binding="listAdjacencyList">
                 <constraints/>
-                <properties>
-                  <preferredScrollableViewportSize width="250" height="200"/>
-                </properties>
+                <properties/>
               </component>
             </children>
           </scrollpane>

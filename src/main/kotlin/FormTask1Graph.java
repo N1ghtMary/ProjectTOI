@@ -24,13 +24,13 @@ public class FormTask1Graph extends JFrame{
     private JPanel panelGraphsActs;
     private JLabel labelAdjList;
     private JScrollPane paneScrollAdjacencyList;
-    private JTable tableAdjacencyList;
     private JLabel labelAdjMatrix;
     private JScrollPane paneScrollAdjacencyMatrix;
     private JTable tableAdjacencyMatrix;
     private JLabel labelIncidenceMatrix;
     private JScrollPane paneScrollIncidenceMatrix;
     private JTable tableIncidenceMatrix;
+    private JList listAdjacencyList;
     private JTable tableUserEdgesCheck;
 
     public FormTask1Graph() {
@@ -56,9 +56,10 @@ public class FormTask1Graph extends JFrame{
         tableUserEdgesGraph.setModel(modelUserEdgesGraph);
         //paneScrollForUserTable.setViewportView(tableUserEdgesGraph);
 
-        DefaultTableModel modelAdjacencyList;
-        modelAdjacencyList = new DefaultTableModel();
-        Object[] column = {"e1","e2","e3","e4","e5"};
+        DefaultListModel<String> modelAdjacencyList;
+        modelAdjacencyList = new DefaultListModel<>();
+        listAdjacencyList.setModel(modelAdjacencyList);
+        //Object[] column = {"e1","e2","e3","e4","e5"};
 
         DefaultTableModel modelAdjacencyMatrix;
         modelAdjacencyMatrix = new DefaultTableModel();
@@ -84,19 +85,23 @@ public class FormTask1Graph extends JFrame{
                     int typeGraphUndirected = 1;
                     int typeMatrixOutput = 0;
                     //adjacencyMatrix.funCalculateAdjacencyMatrix(edgesGraphArray,typeGraphUndirected);
-                    calculateGraphs.funFillModel(calculateGraphs.funCalculateAdjacencyMatrix(edgesGraphArray,typeGraphUndirected),
+                    calculateGraphs.funFillTableModel(calculateGraphs.funCalculateAdjacencyMatrix(edgesGraphArray,typeGraphUndirected),
                             modelAdjacencyMatrix,typeMatrixOutput);
                     typeMatrixOutput++;
-                    calculateGraphs.funFillModel(calculateGraphs.funCalculateIncidenceMatrix(edgesGraphArray,typeGraphUndirected,EDGESAMOUNT),
+                    calculateGraphs.funFillTableModel(calculateGraphs.funCalculateIncidenceMatrix(edgesGraphArray,typeGraphUndirected,EDGESAMOUNT),
                             modelIncidenceMatrix,typeMatrixOutput);
+                    calculateGraphs.funFillAdjacencyListModel(calculateGraphs.funCalculateAdjacencyList(edgesGraphArray,typeGraphUndirected,EDGESAMOUNT),
+                            modelAdjacencyList);
                 } else if(radioButtonDirectedGraph.isSelected() && !radioButtonUndirectedGraph.isSelected()){
                     int typeGraphDirected = 2;
                     int typeMatrixOutput = 0;
-                    calculateGraphs.funFillModel(calculateGraphs.funCalculateAdjacencyMatrix(edgesGraphArray,typeGraphDirected),
+                    calculateGraphs.funFillTableModel(calculateGraphs.funCalculateAdjacencyMatrix(edgesGraphArray,typeGraphDirected),
                             modelAdjacencyMatrix,typeMatrixOutput);
                     typeMatrixOutput++;
-                    calculateGraphs.funFillModel(calculateGraphs.funCalculateIncidenceMatrix(edgesGraphArray,typeGraphDirected,EDGESAMOUNT),
+                    calculateGraphs.funFillTableModel(calculateGraphs.funCalculateIncidenceMatrix(edgesGraphArray,typeGraphDirected,EDGESAMOUNT),
                             modelIncidenceMatrix,typeMatrixOutput);
+                    calculateGraphs.funFillAdjacencyListModel(calculateGraphs.funCalculateAdjacencyList(edgesGraphArray,typeGraphDirected,EDGESAMOUNT),
+                            modelAdjacencyList);
                 }
             }
         });
@@ -119,7 +124,7 @@ public class FormTask1Graph extends JFrame{
                 //tableUserEdgesCheck.setValueAt(edgesGraphArray[countEdges][0],countEdges,1);
                 //tableUserEdgesCheck.setValueAt(edgesGraphArray[countEdges][1],countEdges++,2);
                 //labelTest.setText(String.valueOf(countEdges));
-                //JList<Integer> listShowArray = list1;
+                //JList<Integer> listShowArray = listAdjacencyList;
                 //DefaultListModel<Integer> model = new DefaultListModel<>();
 
                // for(int i = 0; i< edgesGraphArray.length;i++)

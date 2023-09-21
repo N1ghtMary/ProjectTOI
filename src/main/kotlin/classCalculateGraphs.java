@@ -1,4 +1,6 @@
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.util.*;
 
 public class classCalculateGraphs {
     final int MATRIXSIZE = 5;
@@ -64,7 +66,35 @@ public class classCalculateGraphs {
         }
         return  incidenceMatrix;
     }
-    DefaultTableModel funFillModel(int[][] calculatedArray, DefaultTableModel modelCalculatedGraph, int typeMatrixOutput)
+
+    Map<Integer, Set<Integer>> funCalculateAdjacencyList(int[][] userGraphArray,int typeOrientationGraph,final int EDGESAMOUNT)
+    {
+        Map<Integer, Set<Integer>> adjacencyList = new HashMap<>();
+        if(typeOrientationGraph==1)//Undirected
+        {
+            for (int[] edge : userGraphArray) {
+                if (edge[0] != 0 && edge[1] != 0) {
+                    adjacencyList.putIfAbsent(edge[0], new HashSet<>());
+                    adjacencyList.get(edge[0]).add(edge[1]);
+                    if(edge[0] != edge[1]) {
+                        adjacencyList.putIfAbsent(edge[1], new HashSet<>());
+                        adjacencyList.get(edge[1]).add(edge[0]);
+                    }
+                }
+            }
+        }
+        if(typeOrientationGraph==2)//Directed
+        {
+            for (int[] edge : userGraphArray) {
+                if (edge[0] != 0 && edge[1] != 0) {
+                    adjacencyList.putIfAbsent(edge[0], new HashSet<>());
+                    adjacencyList.get(edge[0]).add(edge[1]);
+                }
+            }
+        }
+        return adjacencyList;
+    }
+    DefaultTableModel funFillTableModel(int[][] calculatedArray, DefaultTableModel modelCalculatedGraph, int typeMatrixOutput)
     {
         if(typeMatrixOutput==0)//AdjacencyMatrix
         {
@@ -83,5 +113,14 @@ public class classCalculateGraphs {
             }
         }
         return modelCalculatedGraph;
+    }
+
+    DefaultListModel funFillAdjacencyListModel(Map<Integer, Set<Integer>> adjacencyList, DefaultListModel modelAdjacencyList)
+    {
+        for(Map.Entry<Integer, Set<Integer>> adjacencyFill : adjacencyList.entrySet())
+        {
+            modelAdjacencyList.addElement("Vertex " + adjacencyFill.getKey() + ": " + adjacencyFill.getValue());
+        }
+        return modelAdjacencyList;
     }
 }
