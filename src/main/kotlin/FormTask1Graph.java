@@ -54,12 +54,10 @@ public class FormTask1Graph extends JFrame{
         final Object[] rowUserEdgesGraph = new Object[0];
         modelUserEdgesGraph.setColumnIdentifiers(columnUserEdgesGraph);
         tableUserEdgesGraph.setModel(modelUserEdgesGraph);
-        //paneScrollForUserTable.setViewportView(tableUserEdgesGraph);
 
         DefaultListModel<String> modelAdjacencyList;
         modelAdjacencyList = new DefaultListModel<>();
         listAdjacencyList.setModel(modelAdjacencyList);
-        //Object[] column = {"e1","e2","e3","e4","e5"};
 
         DefaultTableModel modelAdjacencyMatrix;
         modelAdjacencyMatrix = new DefaultTableModel();
@@ -84,7 +82,6 @@ public class FormTask1Graph extends JFrame{
                 if(radioButtonUndirectedGraph.isSelected() && !radioButtonDirectedGraph.isSelected()) {
                     int typeGraphUndirected = 1;
                     int typeMatrixOutput = 0;
-                    //adjacencyMatrix.funCalculateAdjacencyMatrix(edgesGraphArray,typeGraphUndirected);
                     calculateGraphs.funFillTableModel(calculateGraphs.funCalculateAdjacencyMatrix(edgesGraphArray,typeGraphUndirected),
                             modelAdjacencyMatrix,typeMatrixOutput);
                     typeMatrixOutput++;
@@ -106,79 +103,28 @@ public class FormTask1Graph extends JFrame{
             }
         });
 
-        //tableUserEdgesCheck.setAutoCreateColumnsFromModel(true);
-        //tableUserEdgesCheck.getAutoResizeMode();
-        //tableUserEdgesCheck.addColumn(2);
         buttonUserEdgesGraphWrite.addActionListener(new ActionListener() {
             int countEdges = 0;
-            //String[] columnNames = {"Beginning", "Ending"};
-            //JTable table = tableUserEdgesCheck;
-            //DefaultTableModel model = (DefaultTableModel)table.getModel();
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 //do{
                 if(countEdges<EDGESAMOUNT)
                 {edgesGraphArray[countEdges][0] = (int) comboBoxStartGraph.getSelectedItem();
                 edgesGraphArray[countEdges][1] = (int) comboBoxEndGraph.getSelectedItem();
-                //tableUserEdgesCheck.setValueAt(edgesGraphArray[countEdges][0],countEdges,1);
-                //tableUserEdgesCheck.setValueAt(edgesGraphArray[countEdges][1],countEdges++,2);
-                //labelTest.setText(String.valueOf(countEdges));
-                //JList<Integer> listShowArray = listAdjacencyList;
-                //DefaultListModel<Integer> model = new DefaultListModel<>();
 
-               // for(int i = 0; i< edgesGraphArray.length;i++)
-                //{
-                  //  for(int j = 0; j< edgesGraphArray.length;j++) {
                         modelUserEdgesGraph.addRow(new Object[]{edgesGraphArray[countEdges][0],edgesGraphArray[countEdges][1]});
-                    //model.setValueAt(, countEdges, 1);
-                    //tableUserEdgesGraph.setValueAt(edgesGraphArray[countEdges][0],countEdges,0);
-                    //tableUserEdgesCheck.setValueAt(edgesGraphArray[countEdges][1],countEdges,1);
-                    //}
-                //}
-                    //JFrame frame = new JFrame();
-                    //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    //FormTask1Graph frame = new FormTask1Graph();
-                    //tableUserEdgesCheck.getModel();
-                    //frame.getContentPane().add(new JScrollPane(tableUserEdgesCheck));
-                    //frame.pack();
-                   // frame.setVisible(true);
-               // tableUserEdgesCheck = new JTable(model);
 
-
-                    //FormTask1Graph frame = new FormTask1Graph();
-                    //JTable table = new JTable(edgesGraphArray.length, edgesGraphArray[0].length);
-                    /*for (int i = 0; i < edgesGraphArray.length; i++) {
-                        for (int j = 0; j < edgesGraphArray[i].length; j++) {
-                            tableUserEdgesGraph.setValueAt(edgesGraphArray[i][j], i, j);
-                        }
-                    }*/
-
-                    //frame.add(new JScrollPane(tableUserEdgesCheck));
-                    //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    //frame.pack();
-                    //frame.setVisible(true);
                 countEdges++;}
                 else{
                     JOptionPane.showMessageDialog(null, "You cant enter more than 10 edges");
                 }
-                //}
-                //while(countEdges <10);
 
             }
         });
     }
 
     public static void main(String[] args) {
-     /*   // new FormMain();
-        JFrame task1Frame = new JFrame("Main");
-        task1Frame.setContentPane(new FormTask1Graph().panelRadioButton);
-        task1Frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        // mainFrame.setSize(600, 400);
-        task1Frame.pack();
-        task1Frame.setVisible(true);
 
-        // new Main();*/
     }
 
     public JPanel getPanelRadioButton() {

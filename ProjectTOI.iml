@@ -11,5 +11,17 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$" />
+          <root url="file://$MODULE_DIR$/src/main/kotlin" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
