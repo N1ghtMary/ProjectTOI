@@ -2,6 +2,10 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.stream.Stream;
 
 public class FormTask1Graph extends JFrame{
     final int EDGESAMOUNT = 10;
@@ -74,7 +78,16 @@ public class FormTask1Graph extends JFrame{
         tableIncidenceMatrix.setModel(modelIncidenceMatrix);
 
         int[][] edgesGraphArray = new int[EDGESAMOUNT][2];
+        List<List<Integer>> cities = new ArrayList<>();
+        Stream stream = cities.stream();
 
+        ListIterator li1= cities.listIterator();
+        while(li1.hasNext()) {
+            Object element = li1.next();
+
+            //ListIterator li2 = element;
+            //li1.set(element + "+");
+        }
          buttonCalculateGraphActs.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

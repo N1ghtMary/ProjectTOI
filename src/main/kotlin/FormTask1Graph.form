@@ -18,9 +18,12 @@
         <children>
           <component id="d118f" class="javax.swing.JRadioButton" binding="radioButtonDirectedGraph">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="110" height="20"/>
+              </grid>
             </constraints>
             <properties>
+              <hideActionText value="false"/>
               <text value="Directed graph"/>
             </properties>
           </component>
@@ -62,9 +65,17 @@
         <children>
           <component id="7932a" class="javax.swing.JComboBox" binding="comboBoxStartGraph">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="80" height="25"/>
+              </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-13551514"/>
+              <foreground color="-13551514"/>
+            </properties>
+            <clientProperties>
+              <html.disable class="java.lang.Boolean" value="true"/>
+            </clientProperties>
           </component>
           <component id="89fc2" class="javax.swing.JComboBox" binding="comboBoxEndGraph">
             <constraints>
