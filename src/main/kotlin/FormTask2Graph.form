@@ -39,14 +39,40 @@
           </component>
         </children>
       </grid>
-      <grid id="a9024" binding="panelUserInterface" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+      <grid id="a9024" binding="panelUserInterface" layout-manager="GridBagLayout">
         <constraints/>
         <properties>
           <minimumSize width="550" height="370"/>
           <preferredSize width="550" height="370"/>
         </properties>
         <border type="none"/>
-        <children/>
+        <children>
+          <component id="f5050" class="javax.swing.JTextField" binding="textFieldAddNode">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <maximumSize width="85" height="25"/>
+              <minimumSize width="85" height="25"/>
+              <preferredSize width="85" height="25"/>
+            </properties>
+          </component>
+          <component id="f77a5" class="javax.swing.JButton" binding="buttonAddNode">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="30.0" weighty="30.0"/>
+            </constraints>
+            <properties>
+              <maximumSize width="85" height="51"/>
+              <minimumSize width="85" height="51"/>
+              <preferredSize width="85" height="51"/>
+              <text value="Add node"/>
+            </properties>
+          </component>
+        </children>
       </grid>
     </children>
   </grid>
