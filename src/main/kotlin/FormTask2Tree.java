@@ -12,6 +12,7 @@ public class FormTask2Tree {
     private JButton buttonAddNode;
     private JList listDepthFirstSearch;
     private JButton buttonShowDepthFirstSearch;
+    private JButton buttonShowBreadthFirstSearch;
 
     public FormTask2Tree()
     {
@@ -30,24 +31,28 @@ public class FormTask2Tree {
         textFieldAddNode.setForeground(Color.white);
         textFieldAddNode.setFont(new Font("Roboto", Font.PLAIN, 14));
         textFieldAddNode.setCaretColor(new Color(50,50,50));
-        textFieldAddNode.setBounds(5,5, 85, 20);
+        textFieldAddNode.setBounds(5,5, 160, 20);
         buttonAddNode.setBackground(new Color(125,113,216));
         buttonAddNode.setFont(new Font("Roboto", Font.PLAIN, 14));
         buttonAddNode.setForeground(Color.white);
-        buttonAddNode.setBounds(5,32,85,50);
+        buttonAddNode.setBounds(5,32,160,50);
         //textFieldAddNode.setSelectionColor(new Color(50,50,50));
         //textFieldAddNode.setSelectedTextColor(new Color(50,50,50));
         buttonShowDepthFirstSearch.setBackground(new Color(125,113,216));
         buttonShowDepthFirstSearch.setFont(new Font("Roboto", Font.PLAIN, 14));
         buttonShowDepthFirstSearch.setForeground(Color.white);
-        buttonShowDepthFirstSearch.setBounds(95,5,85,50);
+        buttonShowDepthFirstSearch.setBounds(233,5,170,50);
+        buttonShowBreadthFirstSearch.setBackground(new Color(125,113,216));
+        buttonShowBreadthFirstSearch.setFont(new Font("Roboto", Font.PLAIN, 14));
+        buttonShowBreadthFirstSearch.setForeground(Color.white);
+        buttonShowBreadthFirstSearch.setBounds(233,62,170,50);
         listDepthFirstSearch.setFont(new Font("Roboto", Font.PLAIN, 14));
         listDepthFirstSearch.setForeground(Color.white);
         listDepthFirstSearch.setBackground(new Color(125,113,216));
         listDepthFirstSearch.setBounds(410,5,135,360);
-        DefaultListModel<Integer> modelBinaryTreeDepthFirstSearch;
-        modelBinaryTreeDepthFirstSearch = new DefaultListModel<>();
-        listDepthFirstSearch.setModel(modelBinaryTreeDepthFirstSearch);
+        DefaultListModel<Integer> modelBinaryTreeSearch;
+        modelBinaryTreeSearch = new DefaultListModel<>();
+        listDepthFirstSearch.setModel(modelBinaryTreeSearch);
         mainPanel.repaint();
         classBinaryTree actionBinaryTree = new classBinaryTree();
         buttonAddNode.addActionListener(new ActionListener() {
@@ -67,8 +72,8 @@ public class FormTask2Tree {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //classBinaryTree showBinaryTree = new classBinaryTree();
-                modelBinaryTreeDepthFirstSearch.clear();
-                actionBinaryTree.depthFirstSearchInOrder(modelBinaryTreeDepthFirstSearch);
+                modelBinaryTreeSearch.clear();
+                actionBinaryTree.depthFirstSearchInOrder(modelBinaryTreeSearch);
             }
         });
     }

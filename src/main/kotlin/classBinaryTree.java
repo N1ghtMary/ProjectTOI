@@ -79,7 +79,7 @@ public class classBinaryTree {
 
     }
 
-    public DefaultListModel depthFirstSearchInOrder(DefaultListModel modelBinaryTreeDepthFirstSearch)
+    public DefaultListModel depthFirstSearchInOrder(DefaultListModel modelBinaryTreeSearch)
     {
         if (root == null) return null;
         Stack<Node> stackTree = new Stack<>();
@@ -98,7 +98,7 @@ public class classBinaryTree {
             else
             {
                 currentNode = stackTree.pop();
-                modelBinaryTreeDepthFirstSearch.addElement(currentNode.value);
+                modelBinaryTreeSearch.addElement(currentNode.value);
                 currentNode = currentNode.rightChild;
             }
 
@@ -113,7 +113,12 @@ public class classBinaryTree {
                 }
             }*/
         }
-        return modelBinaryTreeDepthFirstSearch;
+        return modelBinaryTreeSearch;
+    }
+
+    public DefaultListModel breadthFirstSearchLvlOrder(DefaultListModel modelBinaryTreeSearch)
+    {
+        return  modelBinaryTreeSearch;
     }
 
     public void searchNode(int value)
