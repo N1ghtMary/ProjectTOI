@@ -1,19 +1,26 @@
-public class classBinaryTree {
-     class Node
+import javax.swing.*;
+import java.util.Stack;
+class Node
+{
+    int value;
+    Node leftChild;
+    Node rightChild;
+    Node previous;
+    Node(int value, Node rightChild, Node leftChild)
     {
-        int value;
-        Node leftChild;
-        Node rightChild;
-        Node previous;
-        Node(int value)
-        {
-            this.value = value;
-            /*leftChild = null;
-            rightChild = null;*/
-        }
+        this.value = value;
+        leftChild = null;
+        rightChild = null;
     }
+    Node(int value)
+    {
+        this.value = value;
+    }
+}
 
-    Node root = null;
+public class classBinaryTree {
+
+    Node root;
 
    /* public void addNode(int value) {
         root = new Node(value);
@@ -69,6 +76,53 @@ public class classBinaryTree {
                 }
             }
         }
+
+    }
+
+    public DefaultListModel depthFirstSearchInOrder(DefaultListModel modelBinaryTreeDepthFirstSearch)
+    {
+        if (root == null) return null;
+        Stack<Node> stackTree = new Stack<>();
+        Node currentNode = root;
+       // stackTree.push(root);
+        while (currentNode != null || !stackTree.empty())
+        {
+            if (currentNode !=  null)
+            {
+
+                stackTree.push(currentNode);
+                currentNode = currentNode.leftChild;
+            }
+
+            //currentNode = stackTree.pop();
+            else
+            {
+                currentNode = stackTree.pop();
+                modelBinaryTreeDepthFirstSearch.addElement(currentNode.value);
+                currentNode = currentNode.rightChild;
+            }
+
+            //currentNode = currentNode.rightChild;
+            /*while (!stackTree.empty()) {
+                Node node = stackTree.pop();
+                if (node.leftChild != null) {
+                    stackTree.push(node.leftChild);
+                }
+                if (node.rightChild != null) {
+                    stackTree.push(node.rightChild);
+                }
+            }*/
+        }
+        return modelBinaryTreeDepthFirstSearch;
+    }
+
+    public void searchNode(int value)
+    {
+
+    }
+
+    public void deleteNode(int value)
+    {
 
     }
 }
