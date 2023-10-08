@@ -139,13 +139,93 @@ public class classBinaryTree {
         return  modelBinaryTreeSearch;
     }
 
-    public void searchNode(int value)
+    void searchNode(int value)
     {
+         searchNode(root,value);
+    }
+    public boolean searchNode(Node searchNode, int value)
+    {
+        if (searchNode == null) return false;
+        if (searchNode.value == value) return true;
 
+        if (value < searchNode.value) {
+            searchNode(searchNode.leftChild, value);
+        }
+        if (value > searchNode.value) {
+            searchNode(searchNode.rightChild, value);
+        }
+        return false;
     }
 
-    public void deleteNode(int value)
+    public boolean deleteNode(int value)
     {
+        Node deletedNode = root;
+        Node parentNode = root;
 
+        boolean isLeftChild = true;
+
+        while (deletedNode.value != value)
+        {
+            parentNode = deletedNode;
+            if(value < deletedNode.value)
+            {
+                isLeftChild = true;
+                deletedNode = deletedNode.leftChild;
+            }
+            else
+            {
+                isLeftChild = false;
+                deletedNode = deletedNode.rightChild;
+            }
+            if(deletedNode == null) return false;
+
+        }
+
+        if(deletedNode.leftChild == null && deletedNode.rightChild == null)
+        {
+            if(deletedNode == root) root = null;
+            else if(isLeftChild) parentNode.leftChild = null;
+            else parentNode.rightChild = null;
+        }
+        else if(deletedNode.rightChild == null)
+        {
+            if(deletedNode == root) root = deletedNode.leftChild;
+            else if(isLeftChild) parentNode.leftChild = deletedNode.leftChild;
+            else parentNode.rightChild = deletedNode.leftChild;
+        }
+        else if(deletedNode.leftChild == null)
+        {
+            if(deletedNode == root) root = deletedNode.rightChild;
+            else if (isLeftChild) parentNode.rightChild = deletedNode.rightChild;
+            else parentNode.rightChild = deletedNode.leftChild;
+        }
+        else
+        {
+            Node replacedNode = getReplacementNode(deletedNode);
+            if(deletedNode == root) root = replacedNode;
+            else if(isLeftChild) parentNode.leftChild = replacedNode;
+            else parentNode.rightChild = replacedNode;
+            replacedNode.leftChild = deletedNode.leftChild;
+        }
+        return true;
+    }
+
+    public Node getReplacementNode(Node replacedNode)
+    {
+        Node replacedParentNode = replacedNode;
+        Node replacedTmpNode = replacedNode;
+        Node currentNode = replacedNode.rightChild;
+        while (currentNode != null)
+        {
+            replacedParentNode = replacedTmpNode;
+            replacedTmpNode = currentNode;
+            currentNode = currentNode.leftChild;
+        }
+        if(replacedTmpNode != replacedNode.rightChild)
+        {
+            replacedParentNode.leftChild = replacedTmpNode.rightChild;
+            replacedTmpNode.rightChild = replacedNode.rightChild;
+        }
+        return  replacedTmpNode;
     }
 }
