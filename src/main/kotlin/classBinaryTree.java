@@ -139,20 +139,18 @@ public class classBinaryTree {
         return  modelBinaryTreeSearch;
     }
 
-    void searchNode(int value)
+    public boolean searchNode(int value)
     {
-         searchNode(root,value);
-    }
-    public boolean searchNode(Node searchNode, int value)
-    {
-        if (searchNode == null) return false;
-        if (searchNode.value == value) return true;
 
-        if (value < searchNode.value) {
-            searchNode(searchNode.leftChild, value);
-        }
-        if (value > searchNode.value) {
-            searchNode(searchNode.rightChild, value);
+        if (root == null) return false;
+        if (root.value == value) return true;
+        Node currentNode = root;
+
+        while (currentNode != null)
+        {
+            if(currentNode.value == value) return true;
+            else if (currentNode.value > value) currentNode = currentNode.leftChild;
+            else currentNode = currentNode.rightChild;
         }
         return false;
     }

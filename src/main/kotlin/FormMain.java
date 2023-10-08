@@ -34,7 +34,7 @@ public class FormMain extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 FormTask1Graph task1= new FormTask1Graph();
-                JFrame task1Frame = new JFrame("Main");
+                JFrame task1Frame = new JFrame("ProjectTOI/Task1");
                 task1Frame.setContentPane(new FormTask1Graph().getPanelRadioButton());
                 task1Frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 task1Frame.pack();
@@ -45,7 +45,7 @@ public class FormMain extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //FormTask2Tree task2= new FormTask2Tree();
-                JFrame task2Frame = new JFrame("Main");
+                JFrame task2Frame = new JFrame("ProjectTOI/Task1");
                 task2Frame.setContentPane(new FormTask2Tree().getmainPanel());
                 task2Frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 task2Frame.pack();
