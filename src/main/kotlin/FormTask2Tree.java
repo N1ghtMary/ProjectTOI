@@ -76,6 +76,13 @@ public class FormTask2Tree {
                 actionBinaryTree.depthFirstSearchInOrder(modelBinaryTreeSearch);
             }
         });
+        buttonShowBreadthFirstSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modelBinaryTreeSearch.clear();
+                actionBinaryTree.breadthFirstSearchLvlOrder(modelBinaryTreeSearch);
+            }
+        });
     }
 
     public static void main(String[] args) {

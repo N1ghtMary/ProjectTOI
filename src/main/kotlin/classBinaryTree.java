@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 class Node
 {
@@ -118,6 +120,22 @@ public class classBinaryTree {
 
     public DefaultListModel breadthFirstSearchLvlOrder(DefaultListModel modelBinaryTreeSearch)
     {
+        if (root == null) return null;
+        Queue queueTree = new LinkedList();
+        queueTree.add(root);
+        while (!queueTree.isEmpty())
+        {
+            Node currentNode = (Node) queueTree.poll();
+            modelBinaryTreeSearch.addElement(currentNode.value);
+            if(currentNode.leftChild != null)
+            {
+                queueTree.add(currentNode.leftChild);
+            }
+            if(currentNode.rightChild != null)
+            {
+                queueTree.add(currentNode.rightChild);
+            }
+        }
         return  modelBinaryTreeSearch;
     }
 
