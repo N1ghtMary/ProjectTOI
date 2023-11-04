@@ -46,6 +46,16 @@
               <text value="2"/>
             </properties>
           </component>
+          <component id="5eede" class="javax.swing.JButton" binding="buttonTask3Compression">
+            <constraints/>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <label value="3"/>
+              <minimumSize width="60" height="60"/>
+              <preferredSize width="60" height="60"/>
+              <text value="3"/>
+            </properties>
+          </component>
         </children>
       </grid>
     </children>

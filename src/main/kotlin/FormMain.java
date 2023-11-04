@@ -14,6 +14,7 @@ public class FormMain extends JFrame{
     private JPanel panelMain;
     private JButton buttonTask2Tree;
     private JPanel formPanel;
+    private JButton buttonTask3Compression;
 
     public FormMain() {
         //FormMain formMain = new FormMain();
@@ -29,6 +30,14 @@ public class FormMain extends JFrame{
         buttonTask2Tree.setFont(new Font("Roboto", Font.PLAIN, 24));
         buttonTask2Tree.setForeground(Color.white);
         buttonTask2Tree.setVisible(true);
+
+        buttonTask3Compression.setText("3");
+        buttonTask3Compression.setBounds(480,106,60,60);
+        buttonTask3Compression.setBorder(new RoundedBorder(20));
+        buttonTask3Compression.setBackground(new Color(125,113,216));
+        buttonTask3Compression.setFont(new Font("Roboto", Font.PLAIN, 24));
+        buttonTask3Compression.setForeground(Color.white);
+        buttonTask3Compression.setVisible(true);
         pack();
         buttonTask1Graph.addActionListener(new ActionListener() {
             @Override
@@ -50,6 +59,16 @@ public class FormMain extends JFrame{
                 task2Frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 task2Frame.pack();
                 task2Frame.setVisible(true);
+            }
+        });
+        buttonTask3Compression.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame task3Frame = new JFrame("ProjectTOI/Task1");
+                task3Frame.setContentPane(new FormTask3Compression().getmainPanel());
+                task3Frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                task3Frame.pack();
+                task3Frame.setVisible(true);
             }
         });
     }
