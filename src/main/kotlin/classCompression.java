@@ -1,38 +1,21 @@
-import org.jetbrains.annotations.NotNull;
-
 import javax.swing.table.DefaultTableModel;
-import java.io.LineNumberInputStream;
 import java.util.*;
 
 public class classCompression {
+
     public static List<Node> nodeList = new ArrayList<>();
     public static HashMap<Character, Double> charProbabilityMap = new HashMap<>();
-    public static class Node implements Comparable<Node>
+    public static Map<Character, Double> sortedMap = new LinkedHashMap<Character, Double>();
+
+    public static class Node
     {
-        char letter;
-        double letterProbability;
-        Node leftChild;
-        Node rightChild;
+        char symbol;
+        double probability;
+        String code = "";
 
-
-        public Node(char letter, double letterProbability) {
-            this.letter = letter;
-            this.letterProbability = letterProbability;
-        }
-
-        public Node(Node left, Node right) {
-            this.letterProbability = left.letterProbability + right.letterProbability;
-            this.leftChild = left;
-            this.rightChild = right;
-        }
-
-        public boolean isLeaf() {
-            return leftChild == null && rightChild == null;
-        }
-
-        @Override
-        public int compareTo(Node other) {
-            return Double.compare(this.letterProbability, other.letterProbability);
+        Node(char symbol, double probability) {
+            this.symbol = symbol;
+            this.probability = probability;
         }
     }
 
@@ -48,117 +31,76 @@ public class classCompression {
         {
             nodeList.add(new Node(entryNodes.getKey(),entryNodes.getValue()));
         }
-        Collections.sort(nodeList);
-        //return nodeList;
+       nodeList.sort((probabilityLeft, probabilityRight)-> Double.compare( probabilityRight.probability,probabilityLeft.probability));
     }
 
-    public static Node buildTree() {
+    public static void buildTree() {
+        Deque<List<Node>> stack = new ArrayDeque<>();
+        stack.push(nodeList);
+
+        while (!stack.isEmpty()) {
+            List<Node> nodes = stack.pop();
+            int mid = divide(nodes);
+            if (mid != -1) {
+                List<Node> left = nodes.subList(0, mid + 1);
+                List<Node> right = nodes.subList(mid + 1, nodes.size());
+                for (Node node : left) {
+                    node.code += "0";
+                }
+                for (Node node : right) {
+                    node.code += "1";
+                }
+                stack.push(right);
+                stack.push(left);
+            }
+        }
+    }
+        static int divide(List<Node> nodeList) {
         if (nodeList.size() == 1) {
-            return nodeList.get(0);
+            return -1;
         }
 
-        double totalProbability = 1.0;
-        /*for (Node node : nodeList) {
-            totalProbability += node.letterProbability;
-        }*/
+        int middle = (nodeList.size()-1)/2;
 
-        double sectionProbability = 0.0;
-        int index = 0;
-        while (sectionProbability <= totalProbability / 2) {
-            sectionProbability += nodeList.get(index).letterProbability;
-            index++;
-        }
-        List<Node> leftNodes = nodeList.subList(0, index);
-        List<Node> rightNodes = nodeList.subList(index, nodeList.size());
-        PriorityQueue<Node> queue = new PriorityQueue<>(nodeList);
-        while (queue.size()>1)
+        if(middle<=1) return 0;
+        if(middle==2) return 1;
+        int start = middle+1;
+        int end=middle+2;
+        double[] differenceSections = new double[nodeList.size()-1];
+        double sectionFirst = nodeList.get(start).probability;
+        double sectionSecond = nodeList.get(end).probability;
+        while (start>=0 && end<=nodeList.size()-1 && end+1<=nodeList.size()-1 && start-1<nodeList.size()-1)
         {
-            Node leftSubtree = queue.poll();
-            Node rightSubtree = queue.poll();
-            Node parent = new Node(leftSubtree,rightSubtree);
-            queue.add(parent);
+            differenceSections[start]=sectionFirst-sectionSecond;
+            sectionFirst += nodeList.get(start - 1).probability;
+            sectionSecond +=nodeList.get(end+1).probability;
+            start--;
+            end++;
         }
-
-        return queue.poll();
-    }
-
-    public static Node buildTree(List<Node> node) {
-        if (nodeList.size() == 1) {
-            return nodeList.get(0);
-        }
-
-        // Collections.sort(nodeList);
-
-        double totalProbability = 1;
-        /*for (Node node : nodes) {
-            totalFrequency += node.letterProbability;
-        }*/
-
-        double sectionProbability = 0;
-        int index = 0;
-        while (sectionProbability <= totalProbability / 2) {
-            sectionProbability += nodeList.get(index).letterProbability;
-            index++;
-        }
-
-        List<Node> leftNodes = nodeList.subList(0, index);
-        List<Node> rightNodes = nodeList.subList(index, nodeList.size());
-
-        /* Node leftSubtree = buildTree(leftNodes);
-        Node rightSubtree = buildTree(rightNodes);*/
-        PriorityQueue<Node> queue = new PriorityQueue<>(node);
-        while (queue.size()>1)
+        double tmpMin=0;
+        for(int i=0;i<differenceSections.length;i++)
         {
-            Node leftSubtree = queue.poll();
-            Node rightSubtree = queue.poll();
-            Node parent = new Node(leftSubtree,rightSubtree);
-            queue.add(parent);
+            if(differenceSections[i]<tmpMin) {
+                start = i;
+                tmpMin=differenceSections[i];
+            }
         }
-
-        return queue.poll();
+        return start;
     }
-
-     public static void buildShannonFanoMapCodes(Node node, String code, Map<Character, String> encodingMap) {
-         if (node.isLeaf()) {
-             encodingMap.put(node.letter, code);
-             return;
-         }
-         buildShannonFanoMapCodes(node.leftChild, code + "0", encodingMap);
-         buildShannonFanoMapCodes(node.rightChild, code + "1", encodingMap);
-
-     }
-     static Map<Character, String> buildShannonFanoMap(Node rootNode) {
-        Map<Character, String> encodingMap = new HashMap<>();
-        buildShannonFanoMapCodes(rootNode, "", encodingMap);
-        return encodingMap;
-    }
-
-    public static DefaultTableModel showWordCodeTableModel(DefaultTableModel modelResult, Map<Character, String> encodingMap) {
-        for(Map.Entry<Character, String> entryNodes:encodingMap.entrySet())
+    public static DefaultTableModel showWordCodeTableModel(DefaultTableModel modelResult) {
+        for(Node entryNodes:nodeList)
         {
-            modelResult.addColumn(entryNodes.getKey());
+            modelResult.addColumn(entryNodes.symbol);
         }
         int column = 1;
-        for(Map.Entry<Character, String> entryNodes:encodingMap.entrySet())
+        for(Node entryNodes:nodeList)
         {
-
-            modelResult.setValueAt(entryNodes.getValue(),2, column);
-
-            modelResult.setValueAt(entryNodes.getKey(), 0, column);
-            column++;
-        }
-        column = 1;
-        for(Map.Entry<Character, Double> entryProbabilities:charProbabilityMap.entrySet())
-        {
-            modelResult.setValueAt(entryProbabilities.getValue(),1, column);
+            modelResult.setValueAt(entryNodes.code,2, column);
+            modelResult.setValueAt(entryNodes.symbol, 0, column);
+            modelResult.setValueAt(entryNodes.probability, 1, column);
             column++;
         }
         return modelResult;
-        /*StringBuilder encodedMessage = new StringBuilder();
-        for (char c : message.toCharArray()) {
-            encodedMessage.append(encodingMap.get(c));
-        }
-        return encodedMessage.toString();*/
     }
 
 

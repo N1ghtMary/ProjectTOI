@@ -92,13 +92,13 @@ public class FormTask3Compression {
         buttonCompress.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                modelCompressionResult.setColumnCount(1);
+               // modelCompressionResult.setColumnCount(0);
                 String userWord=textFieldWord.getText().toLowerCase();
                 classCompression.addNode(userWord);
                 classCompression.buildTree();
-                classCompression.Node root = classCompression.buildTree();
-                Map<Character, String> encodingMap = classCompression.buildShannonFanoMap(root);
-                classCompression.showWordCodeTableModel(modelCompressionResult, encodingMap);
+               // classCompression.Node root = classCompression.buildTree();
+                //Map<Character, String> encodingMap = classCompression.buildShannonFanoMap(root);
+                classCompression.showWordCodeTableModel(modelCompressionResult);
                /* double[] letterProbabilityArray = new double[charCountMap.size()];
                 int index = 0;
                 for(Map.Entry<Character, Integer> entryProbability:charCountMap.entrySet())
