@@ -63,6 +63,16 @@ public class classCompression {
             nodeListShannonFano.sort((probabilityLeft, probabilityRight)-> Double.compare( probabilityRight.letterProbability,probabilityLeft.letterProbability));
         }
 
+        public static void addNode(Map<Character, Double> userProbability)
+        {
+            for(Map.Entry<Character, Double> entryUser:userProbability.entrySet())
+            {
+                nodeListShannonFano.add(new NodeShannonFano(entryUser.getKey(),entryUser.getValue()));
+                nodeListHuffman.add(new NodeHuffman(entryUser.getKey(),entryUser.getValue()));
+            }
+            nodeListShannonFano.sort((probabilityLeft, probabilityRight)-> Double.compare( probabilityRight.letterProbability,probabilityLeft.letterProbability));
+        }
+
         public static void buildTreeShannonFano() {
         Deque<List<NodeShannonFano>> dequeNodeList = new ArrayDeque<>();
         dequeNodeList.push(nodeListShannonFano);
@@ -154,9 +164,12 @@ public class classCompression {
         }
 
         public static DefaultTableModel showWordCodeTableModel(DefaultTableModel modelResult) {
-            for(NodeShannonFano entryNodes:nodeListShannonFano)
+            if(modelResult.getColumnCount()<nodeListShannonFano.size())
             {
-                modelResult.addColumn(entryNodes.symbol);
+                for(NodeShannonFano entryNodes:nodeListShannonFano)
+                {
+                    modelResult.addColumn(entryNodes.symbol);
+                }
             }
             int column = 1;
             for(NodeShannonFano entryNodes:nodeListShannonFano)

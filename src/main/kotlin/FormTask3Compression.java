@@ -16,6 +16,9 @@ public class FormTask3Compression {
     private JTextField textFieldWord;
     private JTable tableResult;
     private JButton buttonCompress;
+    private JLabel labelEnterAmountOfLetters;
+    private JTextField textFieldAmountOfColumns;
+    private JButton buttonAddColumn;
 
     public FormTask3Compression()
     {
@@ -60,14 +63,33 @@ public class FormTask3Compression {
         tableResult.setBackground(new Color(125,113,216));
         tableResult.setForeground(Color.white);
         tableResult.setFont(new Font("Roboto", Font.PLAIN, 14));
-        tableResult.setBounds(5,30, 330, 335);
+        tableResult.setBounds(5,85, 540, 275);
         tableResult.setGridColor(Color.white);
 
         buttonCompress.setBackground(new Color(125,113,216));
         buttonCompress.setFont(new Font("Roboto", Font.PLAIN, 14));
         buttonCompress.setForeground(Color.white);
-        buttonCompress.setBounds(340,30,205,50);
+        buttonCompress.setBounds(410,30,135,50);
         buttonCompress.setText("Compress");
+
+        labelEnterAmountOfLetters.setBackground(new Color(125,113,216));
+        labelEnterAmountOfLetters.setFont(new Font("Roboto", Font.PLAIN, 14));
+        labelEnterAmountOfLetters.setForeground(Color.white);
+        labelEnterAmountOfLetters.setBounds(5,30,165,50);
+        labelEnterAmountOfLetters.setText("Enter amount of symbols");
+
+        textFieldAmountOfColumns.setBackground(new Color(125,113,216));
+        textFieldAmountOfColumns.setForeground(Color.white);
+        textFieldAmountOfColumns.setFont(new Font("Roboto", Font.PLAIN, 14));
+        textFieldAmountOfColumns.setCaretColor(new Color(50,50,50));
+        textFieldAmountOfColumns.setBounds(165,45, 100, 20);
+        textFieldAmountOfColumns.setEditable(false);
+
+        buttonAddColumn.setBackground(new Color(125,113,216));
+        buttonAddColumn.setFont(new Font("Roboto", Font.PLAIN, 14));
+        buttonAddColumn.setForeground(Color.white);
+        buttonAddColumn.setBounds(270,30,135,50);
+        buttonAddColumn.setText("Add symbols");
 
         radioButtonWord.addActionListener(new ActionListener() {
             @Override
@@ -76,6 +98,7 @@ public class FormTask3Compression {
                 {
                     radioButtonProbability.setSelected(false);
                     textFieldWord.setVisible(true);
+                    textFieldAmountOfColumns.setEditable(false);
                 }
             }
         });
@@ -86,24 +109,62 @@ public class FormTask3Compression {
                 {
                     radioButtonWord.setSelected(false);
                     textFieldWord.setVisible(false);
+                    textFieldAmountOfColumns.setEditable(true);
                 }
             }
         });
         buttonCompress.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String userWord=textFieldWord.getText().toLowerCase();
-                classCompression.addNode(userWord);
-                classCompression.buildTreeShannonFano();
-                classCompression.buildTreeHuffman();
-                classCompression.showWordCodeTableModel(modelCompressionResult);
-               /* double[] letterProbabilityArray = new double[charCountMap.size()];
-                int index = 0;
-                for(Map.Entry<Character, Integer> entryProbability:charCountMap.entrySet())
+                try{
+                if(textFieldWord.isVisible())
                 {
-                    double calculationLetterProbability = (double) entryProbability.getValue()/userWord.length();
-                    letterProbabilityArray[index++] = calculationLetterProbability;
-                }*/
+                    String userWord=textFieldWord.getText().toLowerCase();
+                    classCompression.addNode(userWord);
+                    classCompression.buildTreeShannonFano();
+                    classCompression.buildTreeHuffman();
+                    classCompression.showWordCodeTableModel(modelCompressionResult);
+                }
+                if(textFieldAmountOfColumns.isEditable())
+                {
+                     Map<Character, Double> userProbability = new HashMap<>();
+                     double countProbabilities=0;
+                     for(int i = 1; i < modelCompressionResult.getColumnCount(); i++)
+                     {
+                         char keyUserProbability = modelCompressionResult.getValueAt(0,i).toString().charAt(0);
+                         double valueUserProbability = Double.parseDouble(modelCompressionResult.getValueAt(1,i).toString());
+                         countProbabilities+=valueUserProbability;
+                         userProbability.put(keyUserProbability, valueUserProbability);
+                     }
+                     if(countProbabilities<=1) {
+                         classCompression.addNode(userProbability);
+                         classCompression.buildTreeShannonFano();
+                         classCompression.buildTreeHuffman();
+                         classCompression.showWordCodeTableModel(modelCompressionResult);
+                     }
+                     else JOptionPane.showMessageDialog(buttonCompress, "P > 1!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+                catch (Exception everything)
+                {
+                    JOptionPane.showMessageDialog(buttonCompress, "Not right now", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+        });
+        buttonAddColumn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    for (int i = 0; i < Integer.parseInt(textFieldAmountOfColumns.getText()); i++) {
+                        modelCompressionResult.addColumn("" + i);
+                        modelCompressionResult.setValueAt(i + 1, 0, i + 1);
+                    }
+                }
+                catch (Exception everything)
+                {
+                    JOptionPane.showMessageDialog(buttonAddColumn, "Not a number", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }
