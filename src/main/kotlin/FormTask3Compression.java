@@ -19,6 +19,7 @@ public class FormTask3Compression {
     private JLabel labelEnterAmountOfLetters;
     private JTextField textFieldAmountOfColumns;
     private JButton buttonAddColumn;
+    private JButton buttonClear;
 
     public FormTask3Compression()
     {
@@ -49,7 +50,7 @@ public class FormTask3Compression {
         textFieldWord.setForeground(Color.white);
         textFieldWord.setFont(new Font("Roboto", Font.PLAIN, 14));
         textFieldWord.setCaretColor(new Color(50,50,50));
-        textFieldWord.setBounds(215,5, 330, 20);
+        textFieldWord.setBounds(270,5, 300, 20);
         textFieldWord.setVisible(false);
 
         DefaultTableModel modelCompressionResult = new DefaultTableModel();
@@ -63,7 +64,7 @@ public class FormTask3Compression {
         tableResult.setBackground(new Color(125,113,216));
         tableResult.setForeground(Color.white);
         tableResult.setFont(new Font("Roboto", Font.PLAIN, 14));
-        tableResult.setBounds(5,85, 540, 275);
+        tableResult.setBounds(5,85, 540, 280);
         tableResult.setGridColor(Color.white);
 
         buttonCompress.setBackground(new Color(125,113,216));
@@ -90,6 +91,14 @@ public class FormTask3Compression {
         buttonAddColumn.setForeground(Color.white);
         buttonAddColumn.setBounds(270,30,135,50);
         buttonAddColumn.setText("Add symbols");
+
+        buttonClear.setBackground(new Color(50,50,50));
+        buttonClear.setFont(new Font("Roboto", Font.PLAIN, 14));
+        buttonClear.setForeground(Color.white);
+        buttonClear.setBounds(220,5,20,20);
+        buttonClear.setMargin(new Insets(1,1,1,1));
+        buttonClear.setBorder(null);
+        buttonClear.setText("C");
 
         radioButtonWord.addActionListener(new ActionListener() {
             @Override
@@ -165,6 +174,17 @@ public class FormTask3Compression {
                 {
                     JOptionPane.showMessageDialog(buttonAddColumn, "Not a number", "Error", JOptionPane.ERROR_MESSAGE);
                 }
+            }
+        });
+        buttonClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modelCompressionResult.setColumnCount(1);
+               /* modelCompressionResult.addColumn("X");
+                modelCompressionResult.addRow(new Object[]{"X"});
+                modelCompressionResult.addRow(new Object[]{"P (0-1)"});
+                modelCompressionResult.addRow(new Object[]{"Shannon-Fano"});
+                modelCompressionResult.addRow(new Object[]{"Huffman"});*/
             }
         });
     }

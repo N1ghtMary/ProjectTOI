@@ -102,8 +102,7 @@ public class classCompression {
             for (NodeHuffman entryNodeHuffman : nodeListHuffman) {
                 queueHuffman.offer(new NodeHuffman(entryNodeHuffman.symbol,entryNodeHuffman.letterProbability));
             }
-
-            //queueHuffman.addAll(nodeListHuffman);
+            //TODO Repair clearing form. No restarting for new words
             while (queueHuffman.size()>1)
             {
                 NodeHuffman leftSubtree = queueHuffman.poll();
@@ -185,7 +184,12 @@ public class classCompression {
                 modelResult.setValueAt(entryHuffman.getValue(),3,column);
                 column++;
             }
+            encodingMapHuffman.clear();
+            nodeListShannonFano.clear();
+            nodeListHuffman.clear();
+            charProbabilityMap.clear();
             return modelResult;
+
         }
 
 
