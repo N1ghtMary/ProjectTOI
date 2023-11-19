@@ -56,6 +56,16 @@
               <text value="3"/>
             </properties>
           </component>
+          <component id="b7f2f" class="javax.swing.JButton" binding="buttonTask4AlgorithmLZ">
+            <constraints/>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <label value="4"/>
+              <minimumSize width="60" height="60"/>
+              <preferredSize width="60" height="60"/>
+              <text value="4"/>
+            </properties>
+          </component>
         </children>
       </grid>
     </children>

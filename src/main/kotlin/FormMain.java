@@ -15,6 +15,7 @@ public class FormMain extends JFrame{
     private JButton buttonTask2Tree;
     private JPanel formPanel;
     private JButton buttonTask3Compression;
+    private JButton buttonTask4AlgorithmLZ;
 
     public FormMain() {
         //FormMain formMain = new FormMain();
@@ -38,6 +39,15 @@ public class FormMain extends JFrame{
         buttonTask3Compression.setFont(new Font("Roboto", Font.PLAIN, 24));
         buttonTask3Compression.setForeground(Color.white);
         buttonTask3Compression.setVisible(true);
+
+        buttonTask4AlgorithmLZ.setText("4");
+        buttonTask4AlgorithmLZ.setBounds(480,106,60,60);
+        buttonTask4AlgorithmLZ.setBorder(new RoundedBorder(20));
+        buttonTask4AlgorithmLZ.setBackground(new Color(125,113,216));
+        buttonTask4AlgorithmLZ.setFont(new Font("Roboto", Font.PLAIN, 24));
+        buttonTask4AlgorithmLZ.setForeground(Color.white);
+        buttonTask4AlgorithmLZ.setVisible(true);
+
         pack();
         buttonTask1Graph.addActionListener(new ActionListener() {
             @Override
@@ -54,7 +64,7 @@ public class FormMain extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //FormTask2Tree task2= new FormTask2Tree();
-                JFrame task2Frame = new JFrame("ProjectTOI/Task1");
+                JFrame task2Frame = new JFrame("ProjectTOI/Task2");
                 task2Frame.setContentPane(new FormTask2Tree().getmainPanel());
                 task2Frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 task2Frame.pack();
@@ -64,11 +74,21 @@ public class FormMain extends JFrame{
         buttonTask3Compression.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame task3Frame = new JFrame("ProjectTOI/Task1");
+                JFrame task3Frame = new JFrame("ProjectTOI/Task3");
                 task3Frame.setContentPane(new FormTask3Compression().getmainPanel());
                 task3Frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 task3Frame.pack();
                 task3Frame.setVisible(true);
+            }
+        });
+        buttonTask4AlgorithmLZ.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame task4Frame = new JFrame("ProjectTOI/Task4");
+                task4Frame.setContentPane(new FormTask4AlgorithmLZ().getmainPanel());
+                task4Frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                task4Frame.pack();
+                task4Frame.setVisible(true);
             }
         });
     }
