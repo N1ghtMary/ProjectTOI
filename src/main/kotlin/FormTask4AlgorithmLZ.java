@@ -2,6 +2,8 @@ import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class FormTask4AlgorithmLZ {
 
@@ -17,6 +19,11 @@ public class FormTask4AlgorithmLZ {
     private JLabel labelEnterString;
     private JButton buttonClear;
     private JRadioButton radioButtonLZ78;
+    private JScrollPane panelScrollTable;
+    private JLabel labelWindowSize;
+    private JLabel labelBufferSize;
+    private JTextField textFieldWindowSize;
+    private JTextField textFieldBufferSize;
 
     public FormTask4AlgorithmLZ()
     {
@@ -57,11 +64,37 @@ public class FormTask4AlgorithmLZ {
         labelEnterString.setBounds(110,5,200,20);
         labelEnterString.setText("Enter string for compression");
 
+        labelWindowSize.setBackground(new Color(125,113,216));
+        labelWindowSize.setFont(new Font("Roboto", Font.PLAIN, 14));
+        labelWindowSize.setForeground(Color.white);
+        labelWindowSize.setBounds(330,5,105,20);
+        labelWindowSize.setText("Window size");
+
+        labelBufferSize.setBackground(new Color(125,113,216));
+        labelBufferSize.setFont(new Font("Roboto", Font.PLAIN, 14));
+        labelBufferSize.setForeground(Color.white);
+        labelBufferSize.setBounds(440,5,105,20);
+        labelBufferSize.setText("Buffer size");
+
         textFieldInputString.setBackground(new Color(125,113,216));
         textFieldInputString.setForeground(Color.white);
         textFieldInputString.setFont(new Font("Roboto", Font.PLAIN, 14));
         textFieldInputString.setCaretColor(new Color(50,50,50));
-        textFieldInputString.setBounds(110,30, 435, 20);
+        textFieldInputString.setBounds(110,30, 215, 20);
+
+        textFieldBufferSize.setBackground(new Color(125,113,216));
+        textFieldBufferSize.setForeground(Color.white);
+        textFieldBufferSize.setFont(new Font("Roboto", Font.PLAIN, 14));
+        textFieldBufferSize.setCaretColor(new Color(50,50,50));
+        textFieldBufferSize.setBounds(440,30, 105, 20);
+        textFieldBufferSize.setEditable(false);
+
+        textFieldWindowSize.setBackground(new Color(125,113,216));
+        textFieldWindowSize.setForeground(Color.white);
+        textFieldWindowSize.setFont(new Font("Roboto", Font.PLAIN, 14));
+        textFieldWindowSize.setCaretColor(new Color(50,50,50));
+        textFieldWindowSize.setBounds(330,30, 105, 20);
+        textFieldWindowSize.setEditable(false);
 
         buttonCompress.setBackground(new Color(125,113,216));
         buttonCompress.setFont(new Font("Roboto", Font.PLAIN, 14));
@@ -76,10 +109,9 @@ public class FormTask4AlgorithmLZ {
         buttonClear.setText("Clear");
 
         DefaultTableModel modelAlgorithmLZResult = new DefaultTableModel();
-        modelAlgorithmLZResult.addColumn("Dictionary (8)");
-        modelAlgorithmLZResult.addColumn("Buffer (5)");
+        modelAlgorithmLZResult.addColumn("Window");
+        modelAlgorithmLZResult.addColumn("Buffer");
         modelAlgorithmLZResult.addColumn("Code");
-        modelAlgorithmLZResult.addRow(new Object[]{"Dictionary (8)","Buffer (5)","Code"});
 
         tableResult.setModel(modelAlgorithmLZResult);
         tableResult.setBackground(new Color(125,113,216));
@@ -87,6 +119,71 @@ public class FormTask4AlgorithmLZ {
         tableResult.setFont(new Font("Roboto", Font.PLAIN, 14));
         tableResult.setBounds(5,105, 540, 260);
         tableResult.setGridColor(Color.white);
+
+        panelScrollTable.setBackground(new Color(125,113,216));
+        panelScrollTable.setBounds(5,105, 540, 260);
+        panelScrollTable.setForeground(new Color(125,113,216));
+        panelScrollTable.getVerticalScrollBar().setBackground(new Color(125,113,216));
+        panelScrollTable.getHorizontalScrollBar().setBackground(new Color(125,113,216));
+        panelScrollTable.getViewport().setBackground(new Color(125,113,216));
+
+
+        radioButtonLZ77.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(radioButtonLZ77.isSelected())
+                {
+                    radioButtonLZ78.setSelected(false);
+                    radioButtonLZSS.setSelected(false);
+                    textFieldBufferSize.setEditable(true);
+                    labelBufferSize.setText("Buffer size");
+                    textFieldWindowSize.setEditable(true);
+                    labelWindowSize.setText("Window size");
+                }
+            }
+        });
+        radioButtonLZSS.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(radioButtonLZSS.isSelected())
+                {
+                    radioButtonLZ78.setSelected(false);
+                    radioButtonLZ77.setSelected(false);
+                    textFieldBufferSize.setEditable(false);
+                    //labelBufferSize.setText("Buffer size");
+                    textFieldWindowSize.setEditable(false);
+                    //labelWindowSize.setText("Window size");
+                }
+            }
+        });
+        radioButtonLZ78.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(radioButtonLZ78.isSelected())
+                {
+                    radioButtonLZSS.setSelected(false);
+                    radioButtonLZ77.setSelected(false);
+                    textFieldBufferSize.setEditable(false);
+                    //labelBufferSize.setText("Buffer size");
+                    textFieldWindowSize.setEditable(false);
+                    //labelWindowSize.setText("Window size");
+                }
+            }
+        });
+        buttonCompress.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(radioButtonLZ77.isSelected())
+                {
+                    modelAlgorithmLZResult.setRowCount(0);
+                    String inputUser=textFieldInputString.getText();
+                    int MAX_WINDOW_SIZE = Integer.parseInt(textFieldWindowSize.getText());
+                    int MAX_BUFFER_SIZE = Integer.parseInt(textFieldBufferSize.getText());
+                    classAlgorithmLZ.algorithmLZ77(inputUser, MAX_BUFFER_SIZE, MAX_WINDOW_SIZE);
+                    classAlgorithmLZ.printOutput(modelAlgorithmLZResult);
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {
