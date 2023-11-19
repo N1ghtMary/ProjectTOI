@@ -94,22 +94,7 @@ public class FormMain extends JFrame{
     }
 
     public static void main(String[] args) {
-        //JFrame mainFrame = new JFrame("Main");
-        //JButton buttonTask2Tree = new JButton("2");
         new FormMain();
-        /*FormMain mainFrame = new FormMain();
-
-
-        mainFrame.setContentPane(new FormMain().panelMain);
-        mainFrame.setSize(700,500);
-        mainFrame.setBounds(10,10,700,600);
-        mainFrame.setResizable(false);
-        //mainFrame.getContentPane().add(buttonTask2Tree);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //mainFrame.add(buttonTask2Tree);
-
-        //mainFrame.pack();
-        mainFrame.setVisible(true);*/
     }
 
     public JPanel getPanelMain() {
