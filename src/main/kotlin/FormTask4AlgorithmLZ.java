@@ -173,48 +173,62 @@ public class FormTask4AlgorithmLZ {
         buttonCompress.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(radioButtonLZ77.isSelected())
-                {
-                    modelAlgorithmLZResult.setRowCount(0);
-                    modelAlgorithmLZResult.setColumnCount(0);
-                    modelAlgorithmLZResult.addColumn("Window");
-                    modelAlgorithmLZResult.addColumn("Buffer");
-                    modelAlgorithmLZResult.addColumn("Code");
-                    String inputUser=textFieldInputString.getText();
-                    int MAX_WINDOW_SIZE = Integer.parseInt(textFieldWindowSize.getText());
-                    int MAX_BUFFER_SIZE = Integer.parseInt(textFieldBufferSize.getText());
-                    classAlgorithmLZ.algorithmLZ77(inputUser, MAX_BUFFER_SIZE, MAX_WINDOW_SIZE);
-                    classAlgorithmLZ.printOutput(modelAlgorithmLZResult, modelAlgorithmLZResult.getColumnCount());
-                }
-                if(radioButtonLZSS.isSelected())
-                {
-                    modelAlgorithmLZResult.setRowCount(0);
-                    modelAlgorithmLZResult.setColumnCount(0);
-                    modelAlgorithmLZResult.addColumn("Window");
-                    modelAlgorithmLZResult.addColumn("Buffer");
-                    modelAlgorithmLZResult.addColumn("Code");
-                    modelAlgorithmLZResult.addColumn("Lenght");
-                    String inputUser=textFieldInputString.getText();
-                    int MAX_WINDOW_SIZE = Integer.parseInt(textFieldWindowSize.getText());
-                    int MAX_BUFFER_SIZE = Integer.parseInt(textFieldBufferSize.getText());
-                    classAlgorithmLZ.algorithmLZSS(inputUser, MAX_BUFFER_SIZE, MAX_WINDOW_SIZE);
-                    classAlgorithmLZ.printOutput(modelAlgorithmLZResult, modelAlgorithmLZResult.getColumnCount());
-                }
-                if(radioButtonLZ78.isSelected())
-                {
-                    modelAlgorithmLZResult.setRowCount(0);
-                    modelAlgorithmLZResult.setColumnCount(0);
-                    modelAlgorithmLZResult.addColumn("Window");
-                    modelAlgorithmLZResult.addColumn("Code");
-                    modelAlgorithmLZResult.addColumn("Position");
-                    String inputUser=textFieldInputString.getText();
-                    int MAX_WINDOW_SIZE = Integer.parseInt(textFieldWindowSize.getText());
-                    if(MAX_WINDOW_SIZE>=inputUser.length()) {
-                        classAlgorithmLZ.algorithmLZ78(inputUser, MAX_WINDOW_SIZE);
+                try {
+                    if (radioButtonLZ77.isSelected()) {
+                        modelAlgorithmLZResult.setRowCount(0);
+                        modelAlgorithmLZResult.setColumnCount(0);
+                        modelAlgorithmLZResult.addColumn("Window");
+                        modelAlgorithmLZResult.addColumn("Buffer");
+                        modelAlgorithmLZResult.addColumn("Code");
+                        String inputUser = textFieldInputString.getText();
+                        int MAX_WINDOW_SIZE = Integer.parseInt(textFieldWindowSize.getText());
+                        int MAX_BUFFER_SIZE = Integer.parseInt(textFieldBufferSize.getText());
+                        classAlgorithmLZ.algorithmLZ77(inputUser, MAX_BUFFER_SIZE, MAX_WINDOW_SIZE);
                         classAlgorithmLZ.printOutput(modelAlgorithmLZResult, modelAlgorithmLZResult.getColumnCount());
                     }
-                    else JOptionPane.showMessageDialog(buttonCompress, "You r so greedy", "Error", JOptionPane.ERROR_MESSAGE);
+                    if (radioButtonLZSS.isSelected()) {
+                        modelAlgorithmLZResult.setRowCount(0);
+                        modelAlgorithmLZResult.setColumnCount(0);
+                        modelAlgorithmLZResult.addColumn("Window");
+                        modelAlgorithmLZResult.addColumn("Buffer");
+                        modelAlgorithmLZResult.addColumn("Code");
+                        modelAlgorithmLZResult.addColumn("Lenght");
+                        String inputUser = textFieldInputString.getText();
+                        int MAX_WINDOW_SIZE = Integer.parseInt(textFieldWindowSize.getText());
+                        int MAX_BUFFER_SIZE = Integer.parseInt(textFieldBufferSize.getText());
+                        classAlgorithmLZ.algorithmLZSS(inputUser, MAX_BUFFER_SIZE, MAX_WINDOW_SIZE);
+                        classAlgorithmLZ.printOutput(modelAlgorithmLZResult, modelAlgorithmLZResult.getColumnCount());
+                    }
+                    if (radioButtonLZ78.isSelected()) {
+                        modelAlgorithmLZResult.setRowCount(0);
+                        modelAlgorithmLZResult.setColumnCount(0);
+                        modelAlgorithmLZResult.addColumn("Window");
+                        modelAlgorithmLZResult.addColumn("Code");
+                        modelAlgorithmLZResult.addColumn("Position");
+                        String inputUser = textFieldInputString.getText();
+                        int MAX_WINDOW_SIZE = Integer.parseInt(textFieldWindowSize.getText());
+                        if (MAX_WINDOW_SIZE >= inputUser.length()) {
+                            classAlgorithmLZ.algorithmLZ78(inputUser, MAX_WINDOW_SIZE);
+                            classAlgorithmLZ.printOutput(modelAlgorithmLZResult, modelAlgorithmLZResult.getColumnCount());
+                        } else
+                            JOptionPane.showMessageDialog(buttonCompress, "You r so greedy", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
+                catch (Exception everything)
+                {
+                    JOptionPane.showMessageDialog(buttonCompress, "Something went wrong, try again never", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        });
+        buttonClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modelAlgorithmLZResult.setRowCount(0);
+                modelAlgorithmLZResult.setColumnCount(0);
+                textFieldBufferSize.setText("");
+                textFieldWindowSize.setText("");
+                textFieldInputString.setText("");
             }
         });
     }
