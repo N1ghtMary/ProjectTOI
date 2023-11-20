@@ -134,6 +134,7 @@ public class FormTask4AlgorithmLZ {
                     radioButtonLZSS.setSelected(false);
                     textFieldBufferSize.setEditable(true);
                     labelBufferSize.setText("Buffer size");
+                    textFieldBufferSize.setVisible(true);
                     textFieldWindowSize.setEditable(true);
                     labelWindowSize.setText("Window size");
                 }
@@ -148,6 +149,7 @@ public class FormTask4AlgorithmLZ {
                     radioButtonLZ77.setSelected(false);
                     textFieldBufferSize.setEditable(true);
                     labelBufferSize.setText("Buffer size");
+                    textFieldBufferSize.setVisible(true);
                     textFieldWindowSize.setEditable(true);
                     labelWindowSize.setText("Window size");
                 }
@@ -161,6 +163,7 @@ public class FormTask4AlgorithmLZ {
                     radioButtonLZSS.setSelected(false);
                     radioButtonLZ77.setSelected(false);
                     textFieldBufferSize.setEditable(false);
+                    textFieldBufferSize.setVisible(false);
                     labelBufferSize.setText("");
                     textFieldWindowSize.setEditable(true);
                     labelWindowSize.setText("Window size");
@@ -205,6 +208,12 @@ public class FormTask4AlgorithmLZ {
                     modelAlgorithmLZResult.addColumn("Code");
                     modelAlgorithmLZResult.addColumn("Position");
                     String inputUser=textFieldInputString.getText();
+                    int MAX_WINDOW_SIZE = Integer.parseInt(textFieldWindowSize.getText());
+                    if(MAX_WINDOW_SIZE>=inputUser.length()) {
+                        classAlgorithmLZ.algorithmLZ78(inputUser, MAX_WINDOW_SIZE);
+                        classAlgorithmLZ.printOutput(modelAlgorithmLZResult, modelAlgorithmLZResult.getColumnCount());
+                    }
+                    else JOptionPane.showMessageDialog(buttonCompress, "You r so greedy", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

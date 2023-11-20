@@ -92,6 +92,50 @@ public class classAlgorithmLZ {
         }
     }
 
+    public static void algorithmLZ78(String inputUser, final int MAX_WINDOW_SIZE)
+    {
+        List<String> dictionary = new ArrayList<>();
+        dictionary.add("");
+        Map<String, Integer> frequency = new HashMap<>();
+        frequency.put("", 0);
+
+        outputModel.add(new String[]{"''","","0"});
+
+        int i = 0;
+        while (i < inputUser.length()) {
+            String windowSymbols = "" + inputUser.charAt(i);
+            int index = dictionary.indexOf(windowSymbols);
+
+            while (index != -1 && i < inputUser.length() - 1) {
+                i++;
+                windowSymbols += inputUser.charAt(i);
+                index = dictionary.indexOf(windowSymbols);
+            }
+
+            if (index == -1) {
+                String code = "<" + dictionary.indexOf(windowSymbols.substring(0, windowSymbols.length() - 1)) + ", '" + windowSymbols.charAt(windowSymbols.length() - 1) + "'>";
+                outputModel.add(new String[]{"'"+windowSymbols+"'",code,Integer.toString(dictionary.size())});
+                if (dictionary.size() == MAX_WINDOW_SIZE) {
+                    String lastUsed = Collections.min(frequency.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
+                    dictionary.remove(lastUsed);
+                    frequency.remove(lastUsed);
+                }
+                dictionary.add(windowSymbols);
+                frequency.put(windowSymbols, 1);
+            } else frequency.put(windowSymbols, frequency.get(windowSymbols) + 1);
+             i++;
+        }
+
+        String checkLastTwoSymbols = inputUser.length()>1?inputUser.substring(inputUser.length()-2):"";
+        String lastItemOutputModel = dictionary.get(dictionary.size()-1);
+        if (!lastItemOutputModel.contains(checkLastTwoSymbols)) {
+            String lastSymbol = inputUser.substring(i - 1);
+                String code = "<" + dictionary.indexOf("") + ", '" + lastSymbol + "'>";
+                outputModel.add(new String[]{"'"+ lastSymbol +"'", code,Integer.toString(dictionary.size())});
+        }
+    }
+
+
     public static void printOutput(DefaultTableModel modelResult, int modelResultLenght) {
         if(modelResultLenght==3) {
             for (String[] row : outputModel) {
