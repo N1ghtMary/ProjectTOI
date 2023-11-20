@@ -109,9 +109,6 @@ public class FormTask4AlgorithmLZ {
         buttonClear.setText("Clear");
 
         DefaultTableModel modelAlgorithmLZResult = new DefaultTableModel();
-        modelAlgorithmLZResult.addColumn("Window");
-        modelAlgorithmLZResult.addColumn("Buffer");
-        modelAlgorithmLZResult.addColumn("Code");
 
         tableResult.setModel(modelAlgorithmLZResult);
         tableResult.setBackground(new Color(125,113,216));
@@ -149,10 +146,10 @@ public class FormTask4AlgorithmLZ {
                 {
                     radioButtonLZ78.setSelected(false);
                     radioButtonLZ77.setSelected(false);
-                    textFieldBufferSize.setEditable(false);
-                    //labelBufferSize.setText("Buffer size");
-                    textFieldWindowSize.setEditable(false);
-                    //labelWindowSize.setText("Window size");
+                    textFieldBufferSize.setEditable(true);
+                    labelBufferSize.setText("Buffer size");
+                    textFieldWindowSize.setEditable(true);
+                    labelWindowSize.setText("Window size");
                 }
             }
         });
@@ -164,9 +161,9 @@ public class FormTask4AlgorithmLZ {
                     radioButtonLZSS.setSelected(false);
                     radioButtonLZ77.setSelected(false);
                     textFieldBufferSize.setEditable(false);
-                    //labelBufferSize.setText("Buffer size");
-                    textFieldWindowSize.setEditable(false);
-                    //labelWindowSize.setText("Window size");
+                    labelBufferSize.setText("");
+                    textFieldWindowSize.setEditable(true);
+                    labelWindowSize.setText("Window size");
                 }
             }
         });
@@ -176,11 +173,38 @@ public class FormTask4AlgorithmLZ {
                 if(radioButtonLZ77.isSelected())
                 {
                     modelAlgorithmLZResult.setRowCount(0);
+                    modelAlgorithmLZResult.setColumnCount(0);
+                    modelAlgorithmLZResult.addColumn("Window");
+                    modelAlgorithmLZResult.addColumn("Buffer");
+                    modelAlgorithmLZResult.addColumn("Code");
                     String inputUser=textFieldInputString.getText();
                     int MAX_WINDOW_SIZE = Integer.parseInt(textFieldWindowSize.getText());
                     int MAX_BUFFER_SIZE = Integer.parseInt(textFieldBufferSize.getText());
                     classAlgorithmLZ.algorithmLZ77(inputUser, MAX_BUFFER_SIZE, MAX_WINDOW_SIZE);
-                    classAlgorithmLZ.printOutput(modelAlgorithmLZResult);
+                    classAlgorithmLZ.printOutput(modelAlgorithmLZResult, modelAlgorithmLZResult.getColumnCount());
+                }
+                if(radioButtonLZSS.isSelected())
+                {
+                    modelAlgorithmLZResult.setRowCount(0);
+                    modelAlgorithmLZResult.setColumnCount(0);
+                    modelAlgorithmLZResult.addColumn("Window");
+                    modelAlgorithmLZResult.addColumn("Buffer");
+                    modelAlgorithmLZResult.addColumn("Code");
+                    modelAlgorithmLZResult.addColumn("Lenght");
+                    String inputUser=textFieldInputString.getText();
+                    int MAX_WINDOW_SIZE = Integer.parseInt(textFieldWindowSize.getText());
+                    int MAX_BUFFER_SIZE = Integer.parseInt(textFieldBufferSize.getText());
+                    classAlgorithmLZ.algorithmLZSS(inputUser, MAX_BUFFER_SIZE, MAX_WINDOW_SIZE);
+                    classAlgorithmLZ.printOutput(modelAlgorithmLZResult, modelAlgorithmLZResult.getColumnCount());
+                }
+                if(radioButtonLZ78.isSelected())
+                {
+                    modelAlgorithmLZResult.setRowCount(0);
+                    modelAlgorithmLZResult.setColumnCount(0);
+                    modelAlgorithmLZResult.addColumn("Window");
+                    modelAlgorithmLZResult.addColumn("Code");
+                    modelAlgorithmLZResult.addColumn("Position");
+                    String inputUser=textFieldInputString.getText();
                 }
             }
         });

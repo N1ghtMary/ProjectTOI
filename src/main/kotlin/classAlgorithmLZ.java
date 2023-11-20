@@ -1,9 +1,8 @@
+//import com.sun.tools.javac.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
 
 public class classAlgorithmLZ {
-    //private static final int MAX_WINDOW_SIZE = 12;
-    //private static final int MAX_BUFFER_SIZE = 4;
     public static  List<String[]> outputModel = new ArrayList<>();
 
     public static List<String[]> algorithmLZ77(String inputUser,final int MAX_BUFFER_SIZE, final int MAX_WINDOW_SIZE) {
@@ -48,9 +47,62 @@ public class classAlgorithmLZ {
         return outputModel;
     }
 
-    public static void printOutput(DefaultTableModel modelResult) {
-        for (String[] row : outputModel) {
-            modelResult.addRow(new Object[]{row[0],row[1],row[2]});
+    public static void algorithmLZSS(String inputUser,final int MAX_BUFFER_SIZE, final int MAX_WINDOW_SIZE) {
+        String dictionary = "";
+        String buffer = inputUser.substring(0, Math.min(MAX_BUFFER_SIZE, inputUser.length()));
+        inputUser = inputUser.substring(buffer.length());
+
+        while (!buffer.isEmpty()) {
+            int offset = 0;
+            int length = 0;
+            for (int i = 1; i <= buffer.length(); i++) {
+                String subStr = buffer.substring(0, i);
+                int position = dictionary.lastIndexOf(subStr);
+                if (position != -1) {
+                    offset = MAX_WINDOW_SIZE- dictionary.length()+position;
+                    length = subStr.length();
+                } else {
+                    break;
+                }
+            }
+            String code;
+            int codeLength;
+            if (length > 0) {
+                code = "1<" + offset + "," + length + ">";
+                codeLength = (int) (Math.log(MAX_WINDOW_SIZE) / Math.log(2)) + (int) (Math.log(MAX_BUFFER_SIZE) / Math.log(2)) + 2;
+            } else {
+                code = "0'" + buffer.charAt(0) + "'";
+                codeLength = 9;
+            }
+
+            outputModel.add(new String[]{dictionary,buffer,code, Integer.toString(codeLength)});
+
+            int shiftSize = Math.max(length, 1);
+            dictionary += buffer.substring(0, shiftSize);
+            if (dictionary.length() > MAX_WINDOW_SIZE) {
+                dictionary = dictionary.substring(dictionary.length() - MAX_WINDOW_SIZE);
+            }
+
+            buffer = buffer.substring(shiftSize);
+            if (buffer.length() < MAX_BUFFER_SIZE && !inputUser.isEmpty()) {
+                int addSize = Math.min(MAX_BUFFER_SIZE - buffer.length(), inputUser.length());
+                buffer += inputUser.substring(0, addSize);
+                inputUser = inputUser.substring(addSize);
+            }
+        }
+    }
+
+    public static void printOutput(DefaultTableModel modelResult, int modelResultLenght) {
+        if(modelResultLenght==3) {
+            for (String[] row : outputModel) {
+                modelResult.addRow(new Object[]{row[0], row[1], row[2]});
+            }
+        }
+        else if(modelResultLenght==4)
+        {
+            for (String[] row : outputModel) {
+                modelResult.addRow(new Object[]{row[0], row[1], row[2], row[3]});
+            }
         }
         outputModel.clear();
     }
