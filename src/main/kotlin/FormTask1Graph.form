@@ -1,203 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="FormTask1Graph">
-  <grid id="27dc6" binding="panelTask1Graph" layout-manager="GridLayoutManager" row-count="5" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="0" left="0" bottom="0" right="0"/>
+  <grid id="27dc6" binding="panelTask1Graph" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="660" height="265"/>
+      <xy x="365" y="328" width="3495" height="606"/>
     </constraints>
-    <properties/>
+    <properties>
+      <alignmentX value="0.0"/>
+      <alignmentY value="0.0"/>
+      <background color="-13551514"/>
+      <maximumSize width="550" height="410"/>
+      <minimumSize width="550" height="410"/>
+      <preferredSize width="550" height="410"/>
+    </properties>
     <border type="none"/>
     <children>
-      <grid id="a7ed9" binding="panelRadioButtonDirectionGraph" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
+      <grid id="a7ed9" binding="panelRadioButtonDirectionGraph" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="2" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-13551514"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="d118f" class="javax.swing.JRadioButton" binding="radioButtonDirectedGraph">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="110" height="20"/>
-              </grid>
-            </constraints>
+            <constraints/>
             <properties>
+              <background color="-13551514"/>
+              <foreground color="-1"/>
               <hideActionText value="false"/>
               <text value="Directed graph"/>
             </properties>
           </component>
-          <component id="ad009" class="javax.swing.JRadioButton" binding="radioButtonUndirectedGraph">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Undirected graph"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="8f20" binding="panelUserEdgeGraph" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="2370e" class="javax.swing.JButton" binding="buttonCalculateGraphActs">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Calculate"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="b790" binding="panelUserEdgesGraph" layout-manager="GridLayoutManager" row-count="5" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="0" column="0" row-span="5" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="7932a" class="javax.swing.JComboBox" binding="comboBoxStartGraph">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="80" height="25"/>
-              </grid>
-            </constraints>
-            <properties>
-              <background color="-13551514"/>
-              <foreground color="-13551514"/>
-            </properties>
-            <clientProperties>
-              <html.disable class="java.lang.Boolean" value="true"/>
-            </clientProperties>
-          </component>
-          <component id="89fc2" class="javax.swing.JComboBox" binding="comboBoxEndGraph">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties/>
-          </component>
-          <component id="106b6" class="javax.swing.JLabel" binding="labelUserStartGraph">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Choose beginning"/>
-            </properties>
-          </component>
-          <component id="32380" class="javax.swing.JLabel" binding="labelUserEndGraph">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Choose ending "/>
-            </properties>
-          </component>
-          <component id="12cda" class="javax.swing.JButton" binding="buttonUserEdgesGraphWrite">
-            <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Write edges"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <scrollpane id="55fea" binding="paneScrollForUserTable">
-        <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="50" height="190"/>
-          </grid>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="6a35b" class="javax.swing.JTable" binding="tableUserEdgesGraph">
-            <constraints/>
-            <properties/>
-          </component>
-        </children>
-      </scrollpane>
-      <grid id="6131d" binding="panelGraphsActs" layout-manager="GridLayoutManager" row-count="7" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="1" column="2" row-span="3" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="84d66" class="javax.swing.JLabel" binding="labelAdjList">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Adjacency list"/>
-            </properties>
-          </component>
-          <hspacer id="c7d63">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </hspacer>
-          <scrollpane id="e0b43" binding="paneScrollAdjacencyList">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="14d57" class="javax.swing.JList" binding="listAdjacencyList">
-                <constraints/>
-                <properties/>
-              </component>
-            </children>
-          </scrollpane>
-          <vspacer id="edd7b">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </vspacer>
           <component id="f95a" class="javax.swing.JLabel" binding="labelAdjMatrix">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
+            <constraints/>
             <properties>
               <text value="Adjacency matrix"/>
             </properties>
           </component>
-          <scrollpane id="53953" binding="paneScrollAdjacencyMatrix">
-            <constraints>
-              <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="4b924" class="javax.swing.JTable" binding="tableAdjacencyMatrix">
-                <constraints/>
-                <properties>
-                  <preferredScrollableViewportSize width="250" height="200"/>
-                </properties>
-              </component>
-            </children>
-          </scrollpane>
           <component id="3be9e" class="javax.swing.JLabel" binding="labelIncidenceMatrix">
-            <constraints>
-              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
+            <constraints/>
             <properties>
               <text value="Incidence matrix"/>
             </properties>
           </component>
           <scrollpane id="362ad" binding="paneScrollIncidenceMatrix">
-            <constraints>
-              <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-            </constraints>
+            <constraints/>
             <properties/>
             <border type="none"/>
             <children>
@@ -209,8 +58,138 @@
               </component>
             </children>
           </scrollpane>
+          <scrollpane id="e0b43" binding="paneScrollAdjacencyList">
+            <constraints/>
+            <properties>
+              <background color="-6608667"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </scrollpane>
+          <component id="2370e" class="javax.swing.JButton" binding="buttonCalculateGraphActs">
+            <constraints/>
+            <properties>
+              <text value="Calculate"/>
+            </properties>
+          </component>
+          <component id="12cda" class="javax.swing.JButton" binding="buttonUserEdgesGraphWrite">
+            <constraints/>
+            <properties>
+              <text value="Write edges"/>
+            </properties>
+          </component>
+          <component id="106b6" class="javax.swing.JLabel" binding="labelUserStartGraph">
+            <constraints/>
+            <properties>
+              <text value="Choose beginning"/>
+            </properties>
+          </component>
+          <component id="7932a" class="javax.swing.JComboBox" binding="comboBoxStartGraph">
+            <constraints/>
+            <properties>
+              <background color="-6608667"/>
+              <foreground color="-13551514"/>
+            </properties>
+            <clientProperties>
+              <html.disable class="java.lang.Boolean" value="true"/>
+            </clientProperties>
+          </component>
+          <component id="32380" class="javax.swing.JLabel" binding="labelUserEndGraph">
+            <constraints/>
+            <properties>
+              <text value="Choose ending "/>
+            </properties>
+          </component>
+          <component id="89fc2" class="javax.swing.JComboBox" binding="comboBoxEndGraph">
+            <constraints/>
+            <properties/>
+          </component>
+          <component id="14d57" class="javax.swing.JList" binding="listAdjacencyList">
+            <constraints/>
+            <properties/>
+          </component>
+          <component id="ad009" class="javax.swing.JRadioButton" binding="radioButtonUndirectedGraph">
+            <constraints/>
+            <properties>
+              <background color="-13551514"/>
+              <text value="Undirected graph"/>
+            </properties>
+          </component>
+          <component id="84d66" class="javax.swing.JLabel" binding="labelAdjList">
+            <constraints/>
+            <properties>
+              <text value="Adjacency list"/>
+            </properties>
+          </component>
+          <scrollpane id="55fea" binding="paneScrollForUserTable">
+            <constraints/>
+            <properties>
+              <background color="-6608667"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="6a35b" class="javax.swing.JTable" binding="tableUserEdgesGraph">
+                <constraints/>
+                <properties>
+                  <background color="-6608667"/>
+                  <foreground color="-1"/>
+                  <gridColor color="-13551514"/>
+                  <selectionForeground color="-6608667"/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
+          <component id="98fa6" class="javax.swing.JButton" binding="buttonClear">
+            <constraints/>
+            <properties>
+              <text value="Button"/>
+            </properties>
+          </component>
+          <scrollpane id="53953" binding="paneScrollAdjacencyMatrix">
+            <constraints/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="4b924" class="javax.swing.JTable" binding="tableAdjacencyMatrix">
+                <constraints/>
+                <properties>
+                  <preferredScrollableViewportSize width="250" height="200"/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
         </children>
       </grid>
+      <grid id="9d88c" binding="panelTitle" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-13551514"/>
+          <minimumSize width="550" height="40"/>
+          <preferredSize width="550" height="80"/>
+        </properties>
+        <border type="none" title-justification="2"/>
+        <children/>
+      </grid>
+      <component id="953cd" class="javax.swing.JLabel" binding="labelTitle">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <alignmentY value="0.0"/>
+          <autoscrolls value="false"/>
+          <background color="-13487566"/>
+          <doubleBuffered value="false"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <minimumSize width="550" height="40"/>
+          <preferredSize width="550" height="80"/>
+          <text value="Label"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
