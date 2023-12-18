@@ -86,7 +86,6 @@ public class FormMain extends JFrame{
 
         buttonTask4AlgorithmLZ.setText("4");
         buttonTask4AlgorithmLZ.setBounds(480,250,60,60);
-        //buttonTask4AlgorithmLZ.setBorder(new RoundedBorder(20));
         buttonTask4AlgorithmLZ.setBackground(new Color(125,113,216));
         buttonTask4AlgorithmLZ.setFont(new Font("Roboto", Font.PLAIN, 24));
         buttonTask4AlgorithmLZ.setForeground(Color.white);
