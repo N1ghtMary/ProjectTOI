@@ -2,6 +2,7 @@
 Java app for TOI <br />
 Run ProjectTOI.jar<br />
 TCO-305Б-21, Pozdysheva Maria Andreevna <br />
+# GUI
 Main menu:<br />
 <p align="center">
   <img src="https://github.com/N1ghtMary/ProjectTOI/blob/master/ReadmeImg/imgMainMenu.png" width="450" title="hover text">
